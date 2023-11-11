@@ -1,17 +1,48 @@
+import { useState } from "react";
 export default function Login() {
+  //1. Managing & Getting User Input via State & Generic Handlers
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(enteredValues);
+  }
+
+  const [enteredValues, setEnteredValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleInputChange(identifier, value) {
+    setEnteredValues((prevValues) => ({
+      ...prevValues,
+      [identifier]: value,
+    }));
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h2>Login</h2>
 
       <div className="control-row">
         <div className="control no-margin">
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" name="email" />
+          <input
+            onChange={(event) => handleInputChange("email", event.target.value)}
+            id="email"
+            type="email"
+            name="email"
+          />
         </div>
 
         <div className="control no-margin">
           <label htmlFor="password">Password</label>
-          <input id="password" type="password" name="password" />
+          <input
+            onChange={(event) =>
+              handleInputChange("password", event.target.value)
+            }
+            id="password"
+            type="password"
+            name="password"
+          />
         </div>
       </div>
 
