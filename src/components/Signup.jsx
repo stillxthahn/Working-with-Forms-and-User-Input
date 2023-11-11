@@ -1,7 +1,4 @@
 export default function Signup() {
-  //4. Resetting Form
-
-  //Cách 1 - button type="reset"
   function handleSubmit(event) {
     event.preventDefault();
     const fd = new FormData(event.target);
@@ -9,9 +6,6 @@ export default function Signup() {
     const data = Object.fromEntries(fd.entries());
     data.acquisition = acquisition;
     console.log(data);
-
-    //Cách 2
-    event.target.reset();
   }
   return (
     <form onSubmit={handleSubmit}>
