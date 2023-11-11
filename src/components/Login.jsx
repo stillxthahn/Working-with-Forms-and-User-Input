@@ -1,21 +1,14 @@
-import { useState } from "react";
+import { useRef } from "react";
+
 export default function Login() {
-  //1. Managing & Getting User Input via State & Generic Handlers
+  //2. Getting User Input via Refs
+  const email = useRef();
+  const password = useRef();
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(enteredValues);
-  }
-
-  const [enteredValues, setEnteredValues] = useState({
-    email: "",
-    password: "",
-  });
-
-  function handleInputChange(identifier, value) {
-    setEnteredValues((prevValues) => ({
-      ...prevValues,
-      [identifier]: value,
-    }));
+    const enteredEmail = email.current.value;
+    const enteredPassword = password.current.value;
+    console.log(enteredEmail, enteredPassword);
   }
 
   return (
@@ -25,26 +18,12 @@ export default function Login() {
       <div className="control-row">
         <div className="control no-margin">
           <label htmlFor="email">Email</label>
-          <input
-            onChange={(event) => handleInputChange("email", event.target.value)}
-            id="email"
-            type="email"
-            name="email"
-            values={enteredValues.email}
-          />
+          <input ref={email} id="email" type="email" name="email" />
         </div>
 
         <div className="control no-margin">
           <label htmlFor="password">Password</label>
-          <input
-            onChange={(event) =>
-              handleInputChange("password", event.target.value)
-            }
-            id="password"
-            type="password"
-            name="password"
-            values={enteredValues.password}
-          />
+          <input ref={password} id="password" type="password" name="password" />
         </div>
       </div>
 
