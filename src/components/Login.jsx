@@ -9,6 +9,10 @@ export default function Login() {
     const enteredEmail = email.current.value;
     const enteredPassword = password.current.value;
     console.log(enteredEmail, enteredPassword);
+    //4. Resetting Form
+    //không nên dùng do ảnh hưởng tới DOM
+    email.current.value = "";
+    password.current.value = "";
   }
 
   return (

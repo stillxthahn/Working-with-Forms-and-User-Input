@@ -5,6 +5,11 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(enteredValues);
+    //4. Resetting Form
+    setEnteredValues({
+      email: "",
+      password: "",
+    });
   }
 
   const [enteredValues, setEnteredValues] = useState({

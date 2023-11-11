@@ -1,29 +1,17 @@
 export default function Signup() {
-  //3. Getting Values via FormData & Native Browser APIs
+  //4. Resetting Form
 
-  // because you can of course use state and revs
-  // but setting up and handling all those different state values
-  // or all those different revs can of course be a lot of work.
-  // And that's why you should also at least consider
-  // using a native built-in feature
-  // for getting hold of all those values
-  // because it turns out that the browser actually helps you
-  // with handling that form submission
-  // and getting hold of all the entered values.
-
-  //Phải có prop NAME cho các input kể cả select
+  //Cách 1 - button type="reset"
   function handleSubmit(event) {
     event.preventDefault();
     const fd = new FormData(event.target);
-    //const enteredEmail = fd.get("email");
-    //const enteredPassword = fd.get("password");
-    //Tham số của get là thuộc tính NAME
-    //Nhưng mà làm vậy thì lâu -> Dùng built-in OBJECT class
-    //Có thể bị mất Entries -> phải dùng Extracing & Storing
     const acquisition = fd.getAll("acquisition");
     const data = Object.fromEntries(fd.entries());
     data.acquisition = acquisition;
     console.log(data);
+
+    //Cách 2
+    event.target.reset();
   }
   return (
     <form onSubmit={handleSubmit}>
