@@ -1,10 +1,21 @@
+import { useState } from "react";
+
 export default function Signup() {
+ //9. Mixing Custom & Built-in Validation Logic
+ const [passwordAreNotEqual, setPasswordAreNotEqual] = useState(false);
  function handleSubmit(event) {
   event.preventDefault();
   const fd = new FormData(event.target);
   const acquisition = fd.getAll("acquisition");
   const data = Object.fromEntries(fd.entries());
   data.acquisition = acquisition;
+
+  //9. Mixing Custom & Built-in Validation Logic
+
+  if (data.password !== data["confirm-password"]) {
+   setPasswordAreNotEqual(true);
+   return;
+  }
   console.log(data);
 
   //8. Validating Input via Built-in Validation Props
@@ -34,7 +45,15 @@ export default function Signup() {
 
     <div className="control">
      <label htmlFor="confirm-password">Confirm Password</label>
-     <input id="confirm-password" type="password" name="confirm-password" />
+     <input
+      id="confirm-password"
+      type="password"
+      name="confirm-password"
+      required
+     />
+     <div className="control-error">
+      {passwordAreNotEqual && <p>Passwords must match.</p>}
+     </div>
     </div>
    </div>
 
