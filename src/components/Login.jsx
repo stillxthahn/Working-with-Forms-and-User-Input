@@ -30,6 +30,7 @@ export default function Login() {
             id="email"
             type="email"
             name="email"
+            values={enteredValues.email}
           />
         </div>
 
@@ -42,6 +43,7 @@ export default function Login() {
             id="password"
             type="password"
             name="password"
+            values={enteredValues.password}
           />
         </div>
       </div>
