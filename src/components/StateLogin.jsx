@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Input from "./Input";
+import { isEmail, isNotEmpty, hasMinLength } from "../util/validation";
 export default function Login() {
  //1. Managing & Getting User Input via State & Generic Handlers
 
@@ -26,9 +27,13 @@ export default function Login() {
  // and the email then does not include an @ symbol,
 
  // I want to set emailIsInvalid as true
- const emailIsInValid = didEdit.email && !enteredValues.email.includes("@");
+ const emailIsInValid =
+  didEdit.email &&
+  !isEmail(enteredValues.email) &&
+  !isNotEmpty(enteredValues.email);
  const passwordIsInValid =
-  didEdit.password && enteredValues.password.trim().length < 6;
+  didEdit.password && !hasMinLength(enteredValues.password, 6);
+
  // !!! BLUR RA NGOÀI VÀ TRONG INPUT KHÔNG CÓ @
  function handleSubmit(event) {
   event.preventDefault();
